@@ -35,15 +35,15 @@ def game_start():
     print(player_health)
 
 
-
 def welcome_message():
     global current_room
     print(current_room)
+
 
 def main():
     welcome_message()
     start()
 
+
 if __name__ == '__main__':
     main()
-
