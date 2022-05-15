@@ -1,4 +1,4 @@
-
+_HEALTH_STATE = ['Dead', 'Broken', 'Badly Injured', 'Injured', 'Slightly Injured', 'Fine']
 
 class Body:
 
@@ -12,30 +12,115 @@ class Body:
         self._r_leg: int = r_leg
 
     def get_head_health(self):
-        return self._head
+        if self._head == 5:
+            return _HEALTH_STATE[5]
+        elif self._head == 4:
+            return _HEALTH_STATE[4]
+        elif self._head == 3:
+            return _HEALTH_STATE[3]
+        elif self._head >= 1:
+            return _HEALTH_STATE[2]
+        elif self._head == 0:
+            return _HEALTH_STATE[0]
 
     def get_torso_health(self):
-        return self._torso
+        if self._torso >= 8:
+            return _HEALTH_STATE[5]
+        elif self._torso >= 6:
+            return _HEALTH_STATE[4]
+        elif self._torso >= 4:
+            return _HEALTH_STATE[3]
+        elif self._torso >= 1:
+            return _HEALTH_STATE[2]
+        elif self._torso == 0:
+            return _HEALTH_STATE[0]
 
     def get_stomach_health(self):
-        return self._stomach
+        if self._stomach >= 8:
+            return _HEALTH_STATE[5]
+        elif self._stomach >= 6:
+            return _HEALTH_STATE[4]
+        elif self._stomach >= 4:
+            return _HEALTH_STATE[3]
+        elif self._stomach >= 1:
+            return _HEALTH_STATE[2]
+        elif self._stomach == 0:
+            return _HEALTH_STATE[0]
 
     def get_l_arm_health(self):
-        return self._l_arm
+        if self._l_arm >= 8:
+            return _HEALTH_STATE[5]
+        elif self._l_arm >= 6:
+            return _HEALTH_STATE[4]
+        elif self._l_arm >= 4:
+            return _HEALTH_STATE[3]
+        elif self._l_arm >= 1:
+            return _HEALTH_STATE[2]
+        elif self._l_arm == 0:
+            return _HEALTH_STATE[1]
 
     def get_r_arm_health(self):
-        return self._r_arm
+        if self._r_arm >= 8:
+            return _HEALTH_STATE[5]
+        elif self._r_arm >= 6:
+            return _HEALTH_STATE[4]
+        elif self._r_arm >= 4:
+            return _HEALTH_STATE[3]
+        elif self._r_arm >= 1:
+            return _HEALTH_STATE[2]
+        elif self._r_arm == 0:
+            return _HEALTH_STATE[1]
 
     def get_l_leg_health(self):
-        return self._l_leg
+        if self._l_leg >= 8:
+            return _HEALTH_STATE[5]
+        elif self._l_leg >= 6:
+            return _HEALTH_STATE[4]
+        elif self._l_leg >= 4:
+            return _HEALTH_STATE[3]
+        elif self._l_leg >= 1:
+            return _HEALTH_STATE[2]
+        elif self._l_leg == 0:
+            return _HEALTH_STATE[1]
 
     def get_r_leg_health(self):
-        return self._r_leg
+        if self._r_leg >= 8:
+            return _HEALTH_STATE[5]
+        elif self._r_leg >= 6:
+            return _HEALTH_STATE[4]
+        elif self._r_leg >= 4:
+            return _HEALTH_STATE[3]
+        elif self._r_leg >= 1:
+            return _HEALTH_STATE[2]
+        elif self._r_leg == 0:
+            return _HEALTH_STATE[1]
+
+    def set_head_health(self, health: int):
+        self._head = health
+
+    def set_torso_health(self, health: int):
+        self._torso = health
+
+    def set_stomach_health(self, health: int):
+        self._stomach = health
+
+    def set_l_arm_health(self, health: int):
+        self._l_arm = health
+
+    def set_r_arm_health(self, health: int):
+        self._r_arm = health
+
+    def set_l_leg_health(self, health: int):
+        self._l_leg = health
+
+    def set_r_leg_health(self, health: int):
+        self._r_leg = health
 
     def __str__(self):
-        return f'Head Health - {self._head} | Torso Health - {self._torso} | Stomach Health - {self._stomach} | ' \
-               f'Left Arm Health - {self._l_arm} | Right Arm Health - {self._r_arm} | Left Leg Health - {self._l_leg} | ' \
-               f'Right Leg Health - {self._r_leg}'
+        return f'\nHead Health - {self.get_head_health()}\nTorso Health - {self.get_torso_health()} ' \
+               f'\nStomach Health - {self.get_stomach_health()}\nLeft Arm Health - {self.get_l_arm_health()} ' \
+               f'\nRight Arm Health - {self.get_r_arm_health()}\nLeft Leg Health - {self.get_l_leg_health()} ' \
+               f'\nRight Leg Health - {self.get_r_leg_health()}'
 
     def __repr__(self):
         return f'Head:{self._head}, Torso:{self._torso}, Stomach:{self._stomach}, ' \
