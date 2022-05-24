@@ -1,4 +1,7 @@
+
+
 _HEALTH_STATE = ['Dead', 'Broken', 'Badly Injured', 'Injured', 'Slightly Injured', 'Fine']
+
 
 class Body:
 
