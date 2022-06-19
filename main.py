@@ -37,27 +37,29 @@ def welcome_message():
 
 
 def character_create():
-    gender = input('Are you male or female? \n')
-    if str(gender.lower().strip()) != 'male' or str(gender.lower().strip()) != 'female':
-        gender = input(f'Please enter a valid gender: Male or Female\n')
 
+    gender = input('Are you male or female? \n')
     name = input('Okay next, what is your name? \n')
     try:
         age = int(input('Note: This game is NOT for users 17 years or younger\nHow old are you? \n'))
-        if age <= 17:
-            age = int(input('Please enter an age of 18 years or older: \n'))
         strength = int(input('On a scale of 1 - 10, how strong are you? \n'))
-        if strength > 10 or strength < 1:
-            strength = int(input('Please enter a value between 1 - 10 \n'))
         agility = int(input('Similarly, on a scale of 1 - 10, how agile are you? \n'))
-        if agility > 10 or agility < 1:
-            agility = int(input('Please enter a value between 1 - 10 \n'))
         toughness = int(input('Lastly, on a scale of 1 - 10, how tough are you? \n'))
-        if toughness > 10 or toughness < 1:
-            toughness = int(input('Please enter a value between 1 - 10 \n'))
 
     except ValueError:
         print("Please enter a valid number.\n")
+        return character_create()
+
+    if age < 18:
+        print("You must be 18 years or older to play.")
+        quit()
+
+    elif strength < 0 and strength > 11 or agility < 0 and agility > 11 or toughness < 0 and toughness > 11:
+        print("Invalid Input\n")
+        return character_create()
+
+    elif gender.lower().strip() != 'male' or gender.lower().strip() != 'female':
+        print("Enter Male or Female please.\n")
         return character_create()
 
     return Character(name, age, gender, strength, agility, toughness, True)
