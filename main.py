@@ -37,14 +37,29 @@ def welcome_message():
 
 
 def character_create():
+    player = Character()
+    player.set_player(True)
 
-    gender = input('Are you male or female? \n')
+    gender = input('Are you male or female?. \n')
+    if gender.strip().lower() == "male":
+        player.set_gender("Male")
+    elif gender.strip().lower() == "female":
+        player.set_gender("Female")
+    else:
+        print("Please enter either 'Male' or 'Female' to progress.")
+        return character_create()
+
     name = input('Okay next, what is your name? \n')
+    player.set_name(name)
     try:
         age = int(input('Note: This game is NOT for users 17 years or younger\nHow old are you? \n'))
+        player.set_age(age)
         strength = int(input('On a scale of 1 - 10, how strong are you? \n'))
+        player.set_strength(strength)
         agility = int(input('Similarly, on a scale of 1 - 10, how agile are you? \n'))
+        player.set_agility(agility)
         toughness = int(input('Lastly, on a scale of 1 - 10, how tough are you? \n'))
+        player.set_toughness(toughness)
 
     except ValueError:
         print("Please enter a valid number.\n")
@@ -54,15 +69,17 @@ def character_create():
         print("You must be 18 years or older to play.")
         quit()
 
-    elif strength < 0 and strength > 11 or agility < 0 and agility > 11 or toughness < 0 and toughness > 11:
-        print("Invalid Input\n")
+    if strength > 11 or strength < 0:
+        print("Invalid Input for Strength\n")
+        return character_create()
+    elif agility > 11 or agility < 0:
+        print("Invalid Input for Agility\n")
+        return character_create()
+    elif toughness > 11 or toughness < 0:
+        print("Invalid Input for Toughness\n")
         return character_create()
 
-    elif gender.lower().strip() != 'male' or gender.lower().strip() != 'female':
-        print("Enter Male or Female please.\n")
-        return character_create()
-
-    return Character(name, age, gender, strength, agility, toughness, True)
+    return player
 
 
 if __name__ == '__main__':
