@@ -1,19 +1,36 @@
 import random
 from body import Body
 
+_GENDERS = ["Male", "Female"]
+_FEMALE_NAMES = ["Iana", "Christal", "Tallie", "Olivia", "Olandria", "Anna", "Aisha", "Rachel", "Luxanna", "Kayla"]
+_MALE_NAMES = ["Samuel", "Robert", "Liam", "Bartholomew", "Bart", "Chris", "John", "Will", "Quentin", "Danny"]
+
 
 class Character:
 
-    def __init__(self, name, age, gender, strength=random.randint(1, 5),
-                 agility=random.randint(1, 5), toughness=random.randint(1, 5), player=False):
-        self._name: str = name
-        self._age: int = age
-        self._gender: str = gender
+    def __init__(self, gender="Male", name="NPC", age=18, strength=1, agility=1, toughness=1, player=False):
+        if player is False:
+            self._gender: str = _GENDERS[random.randint(0, len(_GENDERS)-1)]
+            self._age: int = random.randint(18, 30)
+            self._strength: int = random.randint(1, 5)
+            self._agility: int = random.randint(1, 5)
+            self._toughness: int = random.randint(1, 5)
+            self._player: bool = player
+        else:
+            self._gender: str = gender
+            self._age: int = age
+            self._strength: int = strength
+            self._agility: int = agility
+            self._toughness: int = toughness
+            self._player: bool = player
+
+        if self._gender == "Male" and player is False:
+            self._name = _MALE_NAMES[random.randint(0, len(_MALE_NAMES)-1)]
+        elif self._gender == "Female" and player is False:
+            self._name = _FEMALE_NAMES[random.randint(0, len(_FEMALE_NAMES)-1)]
+        else:
+            self._name = name
         self._health = Body()
-        self._strength: int = strength
-        self._agility: int = agility
-        self._toughness: int = toughness
-        self._player: bool = player
 
     def get_name(self):
         return self._name
@@ -35,6 +52,18 @@ class Character:
 
     def set_gender(self, gender):
         self._gender = gender
+
+    def set_strength(self, strength):
+        self._strength = strength
+
+    def set_agility(self, agility):
+        self._agility = agility
+
+    def set_toughness(self, toughness):
+        self._toughness = toughness
+
+    def set_player(self, player):
+        self._player = player
 
     def get_health(self, body_part):
         if body_part.lower() == 'left arm' or body_part.lower() == 'l arm':
@@ -65,7 +94,7 @@ class Character:
 
     def __str__(self):
         if self._player is True:
-            return f'This is you. You are {self._name} and are {self._age} years old. ' \
+            return f'This is you. You are {self._name} and you are {self._age} years old. ' \
                    f'You have {self._strength} strength, {self._agility} agility, and {self._toughness} toughness.'
         elif self._gender.lower() == 'male':
             return f'This is {self._name}. He is {self._age} years old.'
